@@ -1,5 +1,8 @@
 import {useState,useEffect} from 'react'
-import {TodoProvider} from './contexts'   
+import {TodoProvider} from './contexts'
+import TodoForm from './components/TodoForm'
+import TodoItems from './components/TodoItems'
+
 function App() {
   const[todos,setTodos] = useState([]);
 
@@ -15,7 +18,7 @@ function App() {
   }
   const toggleComplete = (id)=>{
     setTodos((prev)=>
-      prev.map((prevTodo)=>prevTodo.id ===id?{...prevTodo,completed: !prevTodo}: prevTodo)
+      prev.map((prevTodo)=>prevTodo.id ===id?{...prevTodo,completed: !prevTodo.completed}: prevTodo)
     )
   }
   useEffect(()=>{
@@ -42,7 +45,7 @@ function App() {
                           <div key={todo.id}
                           className='w-full'
                           >
-                            <TodoItem todo={todo} />
+                            <TodoItems todo={todo} />
                           </div>
                         ))}
                     </div>
